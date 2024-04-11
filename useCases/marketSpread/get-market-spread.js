@@ -3,6 +3,10 @@ const findHighestBid = require("./utils/find-highest-bid.js");
 
 const getMarketSpread = async (marketId, budaApi) => {
     const market = await budaApi.getOrderBookByMarketId(marketId);
+
+    if (!market) {
+        throw new Error('Market ID does not exist');
+    }
     const {asks, bids} = market;
 
     const lowestAsk = findLowestAsk(asks);
