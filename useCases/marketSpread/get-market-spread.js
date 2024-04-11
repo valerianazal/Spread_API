@@ -8,7 +8,7 @@ const getMarketSpread = async (marketId, budaApi) => {
     const lowestAsk = findLowestAsk(asks);
     const highestBid = findHighestBid(bids);
 
-    const spread = highestBid - lowestAsk;
+    const spread = lowestAsk - highestBid;
 
     return spread;
 }
