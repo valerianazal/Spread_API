@@ -8,6 +8,9 @@ const getMarketSpread = async (marketId, budaApi) => {
         throw new Error('Market ID does not exist');
     }
     const {asks, bids} = market;
+    if (!asks || !bids) {
+        throw new Error('There ar no asks or bids in the market');
+    }
 
     const lowestAsk = findLowestAsk(asks);
     const highestBid = findHighestBid(bids);
