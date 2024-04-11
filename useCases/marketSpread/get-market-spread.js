@@ -1,10 +1,8 @@
-const BudaAPI = require("../../externalServices/budaAPI/index.js");
 const findLowestAsk = require("./utils/find-lowest-ask.js");
 const findHighestBid = require("./utils/find-highest-bid.js");
 
-const getMarketSpread = async (marketId) => {
-    const budaAPI = new BudaAPI();
-    const market = await budaAPI.getOrderBookByMarketId(marketId);
+const getMarketSpread = async (marketId, budaApi) => {
+    const market = await budaApi.getOrderBookByMarketId(marketId);
     const {asks, bids} = market;
 
     const lowestAsk = findLowestAsk(asks);
@@ -15,7 +13,7 @@ const getMarketSpread = async (marketId) => {
     return spread;
 }
 
-module.exports = async (marketId) => {
-    const spread = await getMarketSpread(marketId);
+module.exports = async (marketId, budaApi) => {
+    const spread = await getMarketSpread(marketId, budaApi);
     return spread;
 }
