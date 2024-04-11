@@ -4,9 +4,9 @@ class BudaAPI {
   }
 
   async getMarkets() {
-    const response = await fetch(this.url);
+    const response = await fetch(`${this.url}/markets`);
     const data = await response.json();
-    return data;
+    return data.markets;
   }
 
   async getOrderBookByMarketId(marketId) {
