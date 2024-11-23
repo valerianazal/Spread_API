@@ -15,6 +15,13 @@ class BudaAPI {
     const data = await response.json();
     return data.order_book;
   }
+
+  async getOrderBookByMarketId(marketId) {
+
+    const response = await fetch(`${this.url}/markets/${marketId}/order_book`);
+    const data = await response.json();
+    return data.order_book;
+  }
 }
 
 module.exports = BudaAPI;
